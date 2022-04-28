@@ -14,5 +14,6 @@ class Simulator
 		Simulator();
 		void ThreadRunCamera();
 		void printValueAllCamera();
+		void ReadDataJSON();
 };
 

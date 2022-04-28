@@ -1,0 +1,6 @@
+{
+  "numCamera": 4,
+  "numImageInSecond": 3,
+  "ip": "http://localhost/",
+  "port": 3000
+}

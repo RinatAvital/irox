@@ -3,6 +3,10 @@
 #include<stdlib.h>
 #include "DiscoverMessege.h"
 #include "StatusMesseage.h"
+#include <thread>
+#include<mutex>
+#include <iostream>
+using namespace std::literals::chrono_literals;
 
 
 
@@ -13,6 +17,7 @@ Camera::Camera(char cameraId)
 	bufferMessage = NULL;
 	buffer = new Buffer();
 	isActive = true;
+	std::mutex mutexBuffer;
 }
 
 StatusMesseage* createStatusMessage()
@@ -41,22 +46,29 @@ Camera::~Camera()
 void Camera::generate()
 {
 	int count = rand() % 6 + 1;
+	baseMessage* base;
+	
 	for (int i = 0; i < count; i++)
 	{
-		bufferMessage= (baseMessage**)realloc(bufferMessage, sizeof(baseMessage*) * (++indexMessage + 1));
-		(rand() % 2 + 1 == 1) ? bufferMessage[indexMessage] = createStatusMessage() : bufferMessage[indexMessage] = createDiscoverMessage();
-		//bufferMessage[i]->print();
-		
+		std::cout << "generate " << std::endl;
+		bufferMessage = (baseMessage**)realloc(bufferMessage, sizeof(baseMessage*) * (++indexMessage + 1));
+		(rand() % 2 + 1 == 1) ? base = createStatusMessage() : base= createDiscoverMessage();
+		bufferMessage[indexMessage] = base;
+		bufferMessage[i]->print();
+		std::cout << "\n" << std::endl;
+
 	}
 }
 
 void Camera::sendToBuffer()
 {
+	std::cout << "moove to buffer" << std::endl;
 	for (int i = 0; i <= indexMessage; i++)
 	{
 		bufferMessage[i]->parseBack();
 		buffer->addToBuffer(bufferMessage[i]->getMessageBuffer());
 		//bufferMessage[i]->~baseMessage();
+		bufferMessage[i]->print();
 		free(bufferMessage[i]);
 	}
 	free(bufferMessage);
@@ -68,7 +80,7 @@ void Camera::sendToBuffer()
 
 void Camera::run()
 {
-	while (isActive) 
+	while (isActive)
 	{
 		generate();
 		sendToBuffer();
@@ -88,6 +100,19 @@ unsigned char** Camera::getBufferValue()
 int Camera::getOfNumOfMessege()
 {
 	return numOfMessege;
+}
+
+void Camera::sendToServer()
+{
+
+	while (isActive)
+	{
+		std::this_thread::sleep_for(3s);
+		std::cout << "send to server" << std::endl;
+		buffer->cleanBuffer();
+	}
+
+	
 }
 
 

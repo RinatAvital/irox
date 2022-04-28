@@ -3,6 +3,8 @@
 #include<stdlib.h>
 #include "baseMessage.h"
 #include "Buffer.h"
+#include<mutex>
+#include<thread>
 
 //מחלקת - camera מצלמה :
 //משתנים:
@@ -38,6 +40,7 @@ class Camera
 		void stop();
 		unsigned char** getBufferValue();
 		int getOfNumOfMessege();
+		void sendToServer();
 
 
 
