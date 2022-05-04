@@ -1,0 +1,3 @@
+﻿  Camera.cpp
+C:\Users\רינת אביטל\Documents\GitHub\irox\lesson3-main new\Camera.cpp(140,10): warning C4101: 'ipvalue': unreferenced local variable
+  lesson3.vcxproj -> C:\Users\רינת אביטל\Documents\GitHub\irox\lesson3-main new\Debug\lesson3.exe

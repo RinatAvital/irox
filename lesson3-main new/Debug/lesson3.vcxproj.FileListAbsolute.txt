@@ -1,0 +1,5 @@
+C:\Users\HOME\Documents\irox\c++\lesson3\Debug\lesson3.exe
+C:\Users\HOME\Documents\irox\c++\lesson3\Debug\lesson3.pdb
+C:\Users\רינת אביטל\Documents\GitHub\Graph\irox rinat avital\lesson3-main\Debug\lesson3.exe
+C:\Users\רינת אביטל\Documents\GitHub\irox\lesson3-main\Debug\lesson3.exe
+C:\Users\רינת אביטל\Documents\GitHub\irox\lesson3-main new\Debug\lesson3.exe
